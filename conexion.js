@@ -17,7 +17,7 @@ const pool = mysql.createPool({
 
  
 function getConnection(done) {
-    // Obtiene una conexión de la piscina
+    // Obtiene una conexión del pool
     pool.getConnection(function (err, connection) {
       if (err) {
         // Maneja errores de conexión a la base de datos
