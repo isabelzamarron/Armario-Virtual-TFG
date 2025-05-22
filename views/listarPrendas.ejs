@@ -1,0 +1,102 @@
+<!-- Pestañas categorias -->
+<ul class="nav nav-tabs mb-4" id="categoryTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab" aria-controls="all" aria-selected="true">Todo</button>
+    </li>
+    <% categorias.forEach(categoria => { %>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="<%= categoria.nombre.replace(/\s+/g, '') %>-tab" data-bs-toggle="tab" data-bs-target="#<%= categoria.nombre.replace(/\s+/g, '') %>" type="button" role="tab" aria-controls="<%= categoria.nombre.replace(/\s+/g, '') %>" aria-selected="false">
+                <%= categoria.nombre %>
+            </button>
+        </li>
+    <% }) %>
+</ul>
+
+<div class="tab-content" id="categoryTabsContent">
+    <!-- Pestaña Todo -->
+    <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="row" id="ropaGrid">
+                    <% if (prendas && prendas.length > 0) { %>
+                        <% prendas.forEach(prenda => { %>
+                            <div class="col-md-2 mb-4">
+                                <div class="card mb-4 shadow-sm d-flex h-100 align-items-center justify-content-center fixed-card" onclick="openPrendaModal('<%= prenda.id_prenda %>')">
+                                    <img src="/prendas/photoPrenda/<%= prenda.id_prenda %>" class="bd-placeholder-img card-img-top" alt="<%= prenda.id_prenda %>">
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <p class="text-center">No hay prendas disponibles en esta categoría.</p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Pestañas de tipos -->
+    <% categorias.forEach(categoria => { %>
+        <div class="tab-pane fade" id="<%= categoria.nombre.replace(/\s+/g, '') %>" role="tabpanel" aria-labelledby="<%= categoria.nombre.replace(/\s+/g, '') %>-tab">
+            <!-- Pestañas de tipos de categoria -->
+            <ul class="nav nav-tabs mb-4" id="typeTabs-<%= categoria.nombre.replace(/\s+/g, '') %>" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link tipo-tab active" id="all-<%= categoria.nombre.replace(/\s+/g, '') %>-tab" data-bs-toggle="tab" data-bs-target="#all-<%= categoria.nombre.replace(/\s+/g, '') %>" type="button" role="tab" aria-controls="all-<%= categoria.nombre.replace(/\s+/g, '') %>" aria-selected="true">
+                        Todos
+                    </button>
+                </li>
+                <% const tiposUnicos = tipos.filter(tipo => tipo.categoria_id === categoria.id); %> <!-- Filtrar tipos por categoria_id -->
+                <% tiposUnicos.forEach(tipo => { %>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link tipo-tab" id="<%= tipo.nombre.replace(/\s+/g, '') %>-tab" data-bs-toggle="tab" data-bs-target="#<%= tipo.nombre.replace(/\s+/g, '') %>-<%= categoria.nombre.replace(/\s+/g, '') %>" type="button" role="tab" aria-controls="<%= tipo.nombre.replace(/\s+/g, '') %>" aria-selected="false">
+                            <%= tipo.nombre %>
+                        </button>
+                    </li>
+                <% }) %>
+            </ul>
+            <div class="tab-content" id="typeTabsContent-<%= categoria.nombre.replace(/\s+/g, '') %>">
+                <div class="tab-pane fade show active" id="all-<%= categoria.nombre.replace(/\s+/g, '') %>" role="tabpanel" aria-labelledby="all-<%= categoria.nombre.replace(/\s+/g, '') %>-tab">
+                    <div class="album py-5 bg-light">
+                        <div class="container">
+                            <div class="row">
+                                <% const prendasFiltradasPorCategoria = prendas.filter(prenda => prenda.categoria === categoria.nombre); %>
+                                <% if (prendasFiltradasPorCategoria.length > 0) { %>
+                                    <% prendasFiltradasPorCategoria.forEach(prenda => { %>
+                                        <div class="col-md-2  mb-4">
+                                            <div class="card mb-4 shadow-sm d-flex h-100 align-items-center justify-content-center fixed-card" onclick="openPrendaModal('<%= prenda.id_prenda %>')">
+                                             <img src="/prendas/photoPrenda/<%= prenda.id_prenda %>" class="bd-placeholder-img card-img-top" alt="<%= prenda.id_prenda %>">
+                                             </div>
+                                        </div>
+                                    <% }) %>
+                                <% } else { %>
+                                    <p class="text-center">No hay prendas disponibles en esta categoría.</p>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% tiposUnicos.forEach(tipo => { %>
+                    <div class="tab-pane fade" id="<%= tipo.nombre.replace(/\s+/g, '') %>-<%= categoria.nombre.replace(/\s+/g, '') %>" role="tabpanel" aria-labelledby="<%= tipo.nombre.replace(/\s+/g, '') %>-tab">
+                        <div class="album py-5 bg-light">
+                            <div class="container">
+                                <div class="row">
+                                    <% const prendasFiltradasPorTipo = prendas.filter(prenda => prenda.categoria === categoria.nombre && prenda.tipo === tipo.nombre); %>
+                                    <% if (prendasFiltradasPorTipo.length > 0) { %>
+                                        <% prendasFiltradasPorTipo.forEach(prenda => { %>
+                                            <div class="col-md-2  mb-4">
+                                                <div class="card mb-4 shadow-sm d-flex h-100 align-items-center justify-content-center fixed-card" onclick="openPrendaModal('<%= prenda.id_prenda %>')">
+                                                    <img src="/prendas/photoPrenda/<%= prenda.id_prenda %>" class="bd-placeholder-img card-img-top" alt="<%= prenda.id_prenda %>">
+                                                    </div>
+                                            </div>
+                                        <% }) %>
+                                    <% } else { %>
+                                        <p class="text-center">No se han encontrado prendas en este tipo.</p>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    <% }) %>
+</div>

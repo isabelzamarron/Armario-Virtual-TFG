@@ -1,0 +1,95 @@
+
+
+  <!-- Modal añadir outfit -->
+<div class="modal fade" id="createOutfitModal" tabindex="-1" aria-labelledby="createOutfitModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createOutfitModalLabel">Añadir Outfit</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="outfitForm" enctype="multipart/form-data">
+               <!-- Paso 1-->
+                <div id="step1" class="stepAdd">
+                <!--Nombre-->
+                <div class="mb-3">
+                    <label for="outfitNombre" class="form-label">Nombre del Outfit</label>
+                    <input type="text" class="form-control" id="outfitNombre" name="outfitNombre" placeholder="Nombre del outfit">
+                    <div id="errorNombre" class="text-danger d-none">Por favor, introduce un nombre.</div>
+                </div>
+                <!-- Estacion-->
+                <div class="mb-3">
+                    <label class="form-label">Estación</label>
+                    <div id="estacionOpcionesOutfit"class="d-flex flex-wrap"></div>
+                    <div id="errorEstaciones" class="text-danger d-none">Por favor, selecciona al menos una estación.</div>
+                    <input type="hidden" id="outfitEstacion" name="outfitEstacion">
+                </div>
+                <!-- Evento -->
+                <div class="mb-3">
+                    <label class="form-label">Selecciona los tipos de evento</label>
+                    <div id="eventosOpcionesAdd" class="d-flex flex-wrap"></div>
+                    <div id="errorEventos" class="text-danger d-none">Por favor, selecciona al menos un evento.</div>
+                    <input type="hidden" id="outfitEvento" name="outfitEvento">
+                </div>
+                <!-- Tags -->
+                <div class="mb-3">
+                    <label class="form-label">Selecciona los tags</label>
+                        <div id="tagsOpcionesAdd" class="d-flex flex-wrap"></div>
+                        <div id="errorTags" class="text-danger d-none">Por favor, selecciona al menos un tag.</div> 
+                        <input type="hidden" id="outfitTags" name="outfitTags">
+                    </div>
+                </div>
+                <!--Paso 2-->
+                <div id="step2" class="stepAdd" style="display: none;">
+                <div class="row">
+                <!--Previsualizacion outfit-->
+                <div class="col-md-6">
+                    <label class="form-label">Previsualización del Outfit:</label>
+                    <div id="previewContainer" class="border p-3">  
+                </div>
+                </div>
+                <!-- Seleccion de prendas -->
+            <div class="col-md-6">
+                <div id="prendasAcordeon">
+                    <div id="errorPrendas" class="text-danger d-none">Por favor, selecciona al menos una prenda.</div>
+                    <label class="form-label">Selecciona las prendas</label>
+                    <div class="accordion" id="categoriasAcordeon"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="prevBtnAdd" style="display: none;" onclick="navigate(-1)">Anterior</button>
+            <button type="button" class="btn btn-primary" id="nextBtnAdd" onclick="navigate(1)">Siguiente</button>
+            
+            <!-- guardar -->
+            <div id="saveOptions" style="display: none;">
+                <button type="button" class="btn btn-primary" id="saveBtn" data-user-id="<%= u.id %>" onclick="guardarOutfit(event, false)">Guardar solo</button>
+                <button type="button" class="btn btn-success" id="publishBtn" data-user-id="<%= u.id %>" onclick="guardarOutfit(event, true)">Guardar y publicar</button>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+  <!--Modal de mensaje de exito-->
+<div class="modal fade" id="modalExitoOutfit" tabindex="-1" aria-labelledby="modalExitoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-center p-4">
+        <div class="mx-auto mb-3"style="font-size: 3rem;"> ✅ </div>
+        <h5 class="modal-title mb-2" id="modalExitoLabel">¡Outfit añadido!</h5>
+        <p>El outfit se ha guardado correctamente.</p>
+      </div>
+    </div>
+  </div> 
+
+
+<link rel="stylesheet" href="../../public/stylesheet/addOutfitModalStyles.css">
+<!-- html2canvas -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="../public/javascript/addOutfit.js"></script>
+<script src="../public/javascript/obtenerParametrosOutfit.js"></script>

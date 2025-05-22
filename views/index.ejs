@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armario Inteligente</title>
+
+    <link rel="icon" href="/uploads/icono.png" type="image/x-icon">
+    <!-- Estilos y Frameworks -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <script src="https://cdn.tailwindcss.com"></script><!-- lo uso para que se vea la sidebar-->
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/stylesheet/modales_styles.css">
+
+</head>
+
+<body id="body">
+    <%- include('navbar') %>
+  
+    <!-- Contenido Principal -->
+<main id="main-content" class="flex-grow p-4 mt-4">
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <!-- Perfil de Usuario -->
+            <div class="col-12">
+            <div class="card p-4 shadow-sm bg-white rounded-4 mb-4">
+                <div class="d-flex flex-column flex-md-row align-items-center gap-4">
+                    <!-- Foto de perfil -->
+                    <img src="/user/photo/<%= u.id %>" 
+                         alt="Foto de Perfil" 
+                         class="rounded-circle shadow-sm" 
+                         style="width: 110px; height: 110px; object-fit: cover;">
+        
+                    <!-- Datos del usuario -->
+                    <div class="flex-grow-1">
+                        <h3 class="mb-1 fw-semibold fs-5"><%= u.nombre %></h3>
+                        <p class="text-muted mb-3 fs-6"><%= u.nombre_usuario %></p>
+        
+                        <div class="d-flex gap-4 text-center fs-6">
+                            <div>
+                                <strong><span id="postCount"><%= u.publicaciones %></span></strong>
+                                <p class="text-muted small mb-0">Publicaciones</p>
+                            </div>
+                            <div>
+                                <strong><span id="followersCount"><%= u.followers %></span></strong>
+                                <p class="text-muted small mb-0">
+                                    Seguidores
+                                    <button class="btn btn-link p-0 text-decoration-none" data-bs-toggle="modal" data-bs-target="#followersModal">
+                                        <i class="bi bi-chevron-down"></i>
+                                    </button>
+                                </p>
+                            </div>
+                            <div>
+                                <strong><span id="followingCount"><%= u.following %></span></strong>
+                                <p class="text-muted small mb-0">
+                                    Seguidos
+                                    <button class="btn btn-link p-0 text-decoration-none" data-bs-toggle="modal" data-bs-target="#followingModal">
+                                        <i class="bi bi-chevron-down"></i>
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Tiempo -->
+                    <div class="card shadow-sm bg-light border-0 rounded-4" 
+                    style="min-width: 500px; height: 175px;">                                   
+                   <div id="ww_f832ee10ec476" v='1.3' loc='auto' a='{"t":"responsive","lang":"es","sl_lpl":1,"ids":[],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"#FFFFFF00","cl_font":"#000000","cl_cloud":"#d4d4d4","cl_persp":"#2196F3","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722","cl_odd":"#00000000"}'>Más previsiones: <a href="https://oneweather.org/es/seville/" id="ww_f832ee10ec476_u" target="_blank">oneweather.org</a></div><script async src="https://app3.weatherwidget.org/js/?id=ww_f832ee10ec476"></script>
+                </div>
+                 </div>
+             </div>  
+  
+        <div class="row">
+            <div class="col-lg-8 mb-4">
+                 <!-- Outfits amigos -->
+                <div class="card p-4 shadow-sm bg-white rounded-4">
+                    <div class="d-flex align-items-center mb-3">
+                        
+                        <div class="bg-light rounded-circle d-flex justify-content-center align-items-center me-3" style="width: 50px; height: 50px;">
+                            <span style="font-size: 1.8rem;">👫</span>
+                        </div>
+                        <div>
+                            <h4 class="mb-0">Publicaciones de tus amigos</h4>
+                            <small class="text-muted">Descubre looks inspiradores</small>
+                        </div>
+                    </div>
+                    <div id="outfitsContainerAmigos" class="outfits-container-amigos">
+                        <% if (outfitsSeguidos && outfitsSeguidos.length > 0) { %>
+                            <% outfitsSeguidos.forEach(outfitseg => { %>
+                                <div class="card mb-2 border-0 shadow-sm">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="/outfits/photoOutfitPublico/<%= outfitseg.id_outfit%>/<%= outfitseg.duenio_outfit%>" />
+
+                                         </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title-amigos mb-1"><%= outfitseg.nombre %></h5>
+                                                <p class="text-muted small mb-2"><%= outfitseg.nombre_usuario %></p>
+                                                <p class="text-muted small mt-2">
+                                                    Fecha creación <%= new Date(outfitseg.fecha_creacion).toLocaleDateString('es-ES') %>
+                                                </p>
+                                                   </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        <% } else { %>
+                            <p class="text-muted">Tus amigos aún no han compartido outfits públicos.</p>
+                        <% } %>
+                    </div>       
+                </div>
+                 <!-- Outfits usuario -->
+                <div class="card p-4 shadow-sm bg-white mt-4 rounded-4">
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="bg-light rounded-circle d-flex justify-content-center align-items-center me-3" style="width: 50px; height: 50px;">
+                            <span style="font-size: 1.8rem;">📸</span>
+                        </div>
+                        <div>
+                            <h4 class="mb-0">Mis Publicaciones</h4>
+                            <small class="text-muted">Tus outfits recientes</small>
+                        </div>
+                    </div>
+                
+                    <% if (outfits && outfits.length > 0) { %>
+                        <div class="row">
+                            <% outfits.slice(0, 3).forEach(outfit => { %>
+                                <div class="col-12 col-md-4 mb-4">
+                                    <div class="card border-0 shadow-sm">
+                                        
+                                    <img src="/outfits/photoOutfit/<%= outfit.id_outfit %>" class="img-fluid object-fit-cover rounded-top" alt="<%= outfit.nombre %>">
+                                        
+                                        <div class="card-body d-flex flex-column">
+                                            <h5 class="card-title-publicaciones mb-1"><strong><%= outfit.nombre %></strong></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        </div>
+                    <% } else { %>
+                        <p class="text-muted">No tienes publicaciones recientes.</p>
+                    <% } %>
+                
+                    <div class="d-flex justify-content-center mt-3">
+                        <a href="/outfits/listarOutfits" class="btn btn-primary d-flex align-items-center gap-1 shadow-sm ">
+                            <i class="bi bi-card-list"></i> Ver todos los outfits
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mb-4">
+     <!-- Sugerencias de usuarios -->
+            <div class="card p-4 shadow-sm bg-white rounded-4">
+                <div class="d-flex align-items-center mb-3">
+                    <div class="bg-light rounded-circle d-flex justify-content-center align-items-center me-3" style="width: 50px; height: 50px;">
+                        <span style="font-size: 1.8rem;">🔍</span>
+                    </div>
+                    <div>
+                        <h4 class="mb-0">Explora y conecta</h4>
+                        <small class="text-muted">Descubre perfiles y deja que su estilo te inspire</small>
+                    </div>
+                </div>
+            
+                <input type="text" class="form-control mb-3" id="searchUsernameInput" placeholder="Busca un usuario..." oninput="buscarUsuario()">
+            
+                <div id="sugerenciasUsuarios" class="d-flex flex-column gap-2">
+                 
+                </div>
+            </div>
+             <!-- Acceso armario -->
+            <div class="card p-4 shadow-sm bg-white mt-4 rounded-4">
+                <div class="d-flex flex-column flex-md-row align-items-center mb-3">
+                    <div class="bg-light rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                        <span style="font-size: 2rem;">👗</span>
+                    </div>
+
+                    <div>
+                        <h4 class="mb-1">Tu Armario Virtual</h4>
+                        <small class="text-muted">Explora, organiza y crea nuevos outfits con las prendas que has subido.</small>
+                    </div>
+                </div>
+              
+                <div class="row row-cols-1 row-cols-md-2 g-3">
+                    <div class="col">
+                        <a href="/prendas/listarPrendas" class="btn btn-primary btn-sm w-100">👚 Ver Prendas</a>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-outline-secondary btn-sm w-100" data-bs-toggle="modal" data-bs-target="#addPrendaModal"> ➕ Agregar Prenda</button>
+                    </div>
+                    <div class="col">
+                        <a href="/outfits/listarOutfits" class="btn btn-success btn-sm w-100">🧥 Ver Outfits</a>
+                    </div>
+                    <div class="col">
+                         <button class="btn btn-outline-secondary btn-sm w-100" data-bs-toggle="modal" data-bs-target="#addPrendaModal">➕ Crear Outfit</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Estadistivas -->
+            <div class="card p-4 shadow-sm bg-white mt-4 rounded-4">
+                <div class="d-flex align-items-center mb-3">
+               
+                <div class="bg-light rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                    <span style="font-size: 2rem;">📊</span>
+                </div>
+                    <div>
+                        <h4 class="mb-1">Estadísticas</h4>
+                        <small class="text-muted">Consulta el rendimiento y las estadísticas de tus publicaciones, outfits y más.</small>
+                    </div>
+                </div>            
+                <div class="d-flex justify-content-center ">
+                    <a href="/user/estadisticas" class="btn btn-primary d-flex align-items-center shadow-sm">📈 Ver Estadísticas </a>
+                </div>
+            </div>
+            
+         <input type="hidden" id="userId" value="<%= u.id %>">
+
+            <!-- Modales -->
+            <%- include('modals/addPrendaModal', { u: u }) %>
+            <%- include('modals/verSeguidos',{ u: u }) %>
+            <%- include('modals/verSeguidores',{ u: u }) %>
+        
+      </div>  
+ </div>
+ 
+</div>   
+
+</main>
+ <%- include ('footer')%>
+ <div class="modal fade" tabindex="-1" id="modalExitoSeguidor"aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-center p-4">
+            <div class="mx-auto mb-3" style="font-size: 3rem;">
+                ✅
+              </div>
+          <h5 class="modal-title mb-2">¡Éxito!</h5>
+          <p>Has empezado a seguir a este usuario.</p>       
+        </div>
+    </div>
+</div>
+<script src="../public/javascript/funcionesComunidad.js"></script>
+
+    <script>
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const content = document.getElementById('body');
+            
+            sidebar.classList.toggle('-translate-x-full');
+
+            if (!sidebar.classList.contains('-translate-x-full')) {
+                content.style.marginLeft = "16rem";
+            } else {
+                content.style.marginLeft = "0";
+            }
+        }
+    </script>
+  
+
+
+<style>
+    #modalExito .modal-content {
+     border-radius: 1rem;
+      animation: fadeInUp 0.5s ease-out;
+    }
+    @keyframes fadeInUp {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      } to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    </style>
+</body>
+</html>

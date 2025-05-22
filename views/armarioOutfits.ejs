@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Mis outfits</title>
+   
+    <link rel="icon" href="/uploads/icono.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+   
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script><!-- lo uso para que se vea la sidebar-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!--especial de añadir-->
+<link rel="stylesheet" href="../../public/stylesheet/addOutfitModalStyles.css">
+
+<!-- html2canvas -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<!-- interact.js -->
+<script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <link rel="stylesheet" href="/stylesheet/modales_styles.css">
+ 
+</head>
+
+<body id="body">
+    <%- include('navbar') %>
+    <main id="main-content" class="flex-grow p-4 mt-4">
+        <div class="container-fluid mt-3">
+            <div class="card shadow p-4 bg-white rounded">
+            <div class="container mb-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="d-flex justify-content-between align-items-center w-100 mx-auto">
+                        <!-- Boton de filtrar -->
+                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#filterModalOutfit">
+                            <i class="bi bi-funnel"></i>
+                        </button>
+                        <!-- Campo de busqueda -->
+                        <input type="text" class="form-control flex-grow-1 mx-3" id="searchOutfit" placeholder="Buscar outfits...">
+                         <!-- Boton añadir outfit -->
+                        <button class="btn btn-success" id="createOutfitModalBtn" data-bs-toggle="modal" data-bs-target="#createOutfitModal">
+                            <i class="fas fa-plus"></i>Añadir outfit
+                        </button>
+                        
+                    </div>
+                    </div>
+                </div>
+            </div>
+        
+                 <!-- Botón restablecer filtros -->
+          <div class="container mt-2">
+            <button id="resetFiltersOutfit" class="btn btn-secondary mb-4" style="display: none;">Restablecer Filtros</button>
+            </div>
+            <!-- contenedor de outfits filtrados -->
+            <div id="outfitsContainer" class="row" style="display: none;">
+               
+            </div>
+            <!-- panel outfits -->
+            <div id="listarOutfitsContainer">
+                <%- include('listarOutfits') %>
+            </div>
+                <!-- mensaje de no hay resultados -->
+                <div id="noResultsOutfitMessage" class="container mt-4" style="display: none;">
+                    <p class="text-center">No se han encontrado outfits con los filtros aplicados.</p>
+                </div>
+                <!--contenedor busqueda-->
+                <div id="searchOutfitContainer" class="row" style="display: none;"></div>
+                <div id="noResultOutfitSearchMessage" class="container mt-4" style="display: none;">
+                    <p class="text-center">No se han encontrado outfits con la búsqueda ingresada.</p>
+                </div>
+                <!-- Modal filtros -->
+                <%- include('modals/filterOutfitModal')%> 
+                <!-- Modal ver Outfit -->
+                <%- include('modals/detallesOutfitModal')%>  
+                <%- include('modals/addOutfitModal',{ u: u }) %>
+    </div>
+        </div>
+        </div>
+</main>
+<%- include ('footer')%>
+
+</body>
+</html>
+<script>
+
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const content = document.getElementById('body');
+        
+     
+        sidebar.classList.toggle('-translate-x-full');
+        if (!sidebar.classList.contains('-translate-x-full')) {
+            content.style.marginLeft = "16rem";
+        } else {
+            content.style.marginLeft = "0";
+        }
+    }
+</script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="../public/javascript/armarioOutfits.js"></script>
+    <script src="../public/javascript/filtrarOutfits.js"></script>
+    <script src="../public/javascript/obtenerParametrosOutfit.js"></script> 
+    <script src="../public/javascript/busquedaOutfits.js"></script>
+    

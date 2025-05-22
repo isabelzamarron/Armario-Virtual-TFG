@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis prendas</title>
+    
+    <link rel="icon" href="/uploads/icono.png" type="image/x-icon">
+        
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+   
+    <script src="https://cdn.tailwindcss.com"></script><!-- lo uso para que se vea la sidebar-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/stylesheet/modales_styles.css">
+   
+</head>
+
+<body id="body">
+    <%- include('navbar') %>
+    <main id="main-content" class="flex-grow p-4 mt-4">
+        <div class="container-fluid mt-3">
+            <div class="card shadow p-4 bg-white rounded">
+      
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="d-flex justify-content-between align-items-center w-100 mx-auto">
+                        <!-- Boton de filtrar -->
+                        <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#filterModalPrendas">
+                            <i class="bi bi-funnel"></i>
+                        </button>
+                        <!-- Campo de busqueda -->
+                        <input type="text" class="form-control flex-grow-1 mx-3" id="searchPrenda" placeholder="Buscar prendas...">
+                        <!-- Botón de añadir prenda -->
+                        <button class="btn btn-success" id="addClothingBtn" data-bs-toggle="modal" data-bs-target="#addPrendaModal">
+                            <i class="fas fa-plus me-2"></i>Añadir prenda
+                        </button>
+                        
+                        
+                    </div>
+                    
+                </div>
+            </div>
+     
+         <!-- Boton restablecer filtros -->
+    <div class="container mt-2">
+        <button id="botonResetPrendaFiltrada" class="btn btn-secondary mb-4" style="display: none;">Restablecer Filtros</button>
+    </div>
+     <!-- Contenedor de prendas filtradas -->
+     <div id="prendasContainer" class="row" style="display: none;">
+    
+    </div>
+        <!-- Contenedor de prendas -->
+    <div id="listarPrendasContainer">
+        <%- include('listarPrendas') %>
+    </div>
+      <!-- Mensaje de no resultados -->
+      <div id="noResultsMessage" class="container mt-4" style="display: none;">
+        <p class="text-center">No se han encontrado prendas con los filtros aplicados.</p>
+    </div>
+    <!--Contenedor busqueda-->
+    <div id="searchContainer" class="row" style="display: none;"></div>
+    <div id="noResultSearchMessage" class="container mt-4" style="display: none;">
+        <p class="text-center">No se han encontrado prendas con la búsqueda ingresada.</p>
+    </div>
+    <%- include('modals/addPrendaModal', { u: u }) %>
+    <!-- Modal filtros -->
+    <%- include('modals/filterPrendaModal')%>  
+    <!-- Modal ver Prenda -->
+    <%- include('modals/detallesPrendaModal')%>    
+        </div>
+        </div>
+    </main>
+    <%- include ('footer')%>
+
+    <input type="hidden" id="userId" value="<%= u.id %>">
+    <script>
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const content = document.getElementById('body');
+            
+            sidebar.classList.toggle('-translate-x-full');
+            if (!sidebar.classList.contains('-translate-x-full')) {
+                content.style.marginLeft = "16rem";
+            } else {
+                content.style.marginLeft = "0";
+            }
+        }
+    </script>
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    
+    <script src="../public/javascript/armarioPrendas.js"></script>
+    <script src="../public/javascript/filtrarPrendas.js"></script>
+    <script src="../public/javascript/obtenerParametrosPrenda.js"></script>
+    <script src="../public/javascript/busquedaPrendas.js"></script>
+</body>
+</html>

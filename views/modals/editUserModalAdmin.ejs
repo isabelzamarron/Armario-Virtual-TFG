@@ -1,0 +1,147 @@
+<!-- Modal de editar -->
+ <div class="modal fade" id="updateUserModal" tabindex="-1" aria-labelledby="editarPerfilModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-white">
+                <h5 class="modal-title" id="editarPerfilModalLabel">Editar Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editarPerfilForm" enctype="multipart/form-data">
+                       <!-- Mensaje de error -->
+    <div id="update-error" class="alert alert-danger text-center" style="display: none;">
+        ❌ Ocurrió un error. Por favor, revisa los campos e inténtalo de nuevo.
+    </div>
+                    <!-- Paso 1 datos personales-->
+<div class="step step-1">
+    <p class="text-center text-muted">Introduce los datos personales a modificar</p>
+    <div class="row">
+    
+        <div class="col-md-6 mb-3">
+            <label for="update_name" class="form-label"><i class="fas fa-user"></i> Nombre</label>
+            <input  type="text" id="update_name" class="form-control" placeholder="Tu Nombre">
+        </div>
+    
+        <div class="col-md-6 mb-3">
+            <label for="update_surname" class="form-label"><i class="fas fa-user"></i> Apellidos</label>
+            <input  type="text" id="update_surname" class="form-control" placeholder="Tus Apellidos">
+        </div>
+    </div>
+    <div class="row">
+        
+        <div class="col-md-6 mb-3">
+            <label for="update_username" class="form-label"><i class="fas fa-user"></i> Nombre de Usuario</label>
+            <input  type="text" id="update_username" class="form-control" placeholder="@TuUsuario">
+        </div>
+    
+        <div class="col-md-6 mb-3">
+            <label for="update_email" class="form-label"><i class="fas fa-envelope"></i> Correo electrónico</label>
+            <input  type="email" id="update_email" class="form-control" placeholder="usuario@mail.com">
+        </div>
+    </div>
+    <div class="text-center">
+        <button type="button" class="btn btn-primary next-step">Siguiente</button>
+    </div>
+</div>
+
+ <!-- Paso 2 preferencias de estilo -->
+<div class="step step-2 d-none">
+    <p class="text-center text-muted">¿Cómo definirías tu estilo?</p>
+
+    <!-- Formal - Casual -->
+    <div class="mb-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <span> Formal 
+                <i class="fas fa-info-circle text-[#9A8C98] ms-1" data-bs-toggle="tooltip" title="Formal: Elegante y profesional."></i>
+            </span> 
+            <span>Casual <i class="fas fa-info-circle text-[#9A8C98] ms-1" data-bs-toggle="tooltip" title="Casual: Relajado y cómodo."></i> 
+                
+            </span>
+        </div>
+        <input type="range" class="form-range mt-2" min="0" max="10" id="update_formalidad">
+    </div>
+
+    <div class="mb-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <span>Minimalista 
+                <i class="fas fa-info-circle text-[#9A8C98] ms-1" data-bs-toggle="tooltip" title="Minimalista: Simplicidad y pocos elementos."></i>
+            </span>
+            <span>Maximalista <i class="fas fa-info-circle text-[#9A8C98] ms-1" data-bs-toggle="tooltip" title="Maximalista: Exuberancia y detalles llamativos."></i> 
+               
+            </span>
+        </div>
+        <input type="range" class="form-range mt-2" min="0" max="10" id="update_simplicidad">
+    </div>
+
+  
+    <div class="mb-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <span> Clásico 
+                <i class="fas fa-info-circle text-[#9A8C98] ms-1" data-bs-toggle="tooltip" title="Clásico: Atemporal y elegante."></i>
+            </span>
+            <span>Moderno <i class="fas fa-info-circle text-[#9A8C98] ms-1" data-bs-toggle="tooltip" title="Moderno: Actual y vanguardista."></i> 
+          
+            </span>
+        </div>
+        <input type="range" class="form-range mt-2" min="0" max="10" id="update_estilo_temporal">
+    </div>
+
+    
+    <div class="mb-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <span>Bohemio 
+                <i class="fas fa-info-circle text-[#9A8C98] ms-1" data-bs-toggle="tooltip" title="Bohemio: Relajado y artístico."></i>
+            </span>
+            <span>Elegante <i class="fas fa-info-circle text-[#9A8C98] ms-1" data-bs-toggle="tooltip" title="Elegante: Refinado y sofisticado."></i> 
+               
+            </span>
+        </div>
+        <input type="range" class="form-range  mt-2" min="0" max="10" id="update_sofisticacion">
+    </div>
+
+    <div class="text-center">
+        <button type="button" class="btn btn-secondary prev-step">Anterior</button>
+        <button type="button" class="btn btn-primary next-step">Siguiente</button>
+    </div>
+</div>
+     <!-- Paso 3 informacion extra -->
+       <div class="step step-3 d-none">
+          <p class="text-center text-muted">Últimos detalles</p>
+         
+    <div class="mb-4">
+        <label for="update_edad" class="form-label">
+            <i class="fas fa-user"></i> ¿Cuál es tu rango de edad?
+        </label>
+        <select class="form-select" id="update_edad">
+            <option value="" selected disabled>Selecciona tu rango de edad...</option>
+            <option value="18-24">18 - 24 años</option>
+            <option value="25-34">25 - 34 años</option>
+            <option value="35-44">35 - 44 años</option>
+            <option value="45-54">45 - 54 años</option>
+            <option value="55+">55 años o más</option>
+        </select>
+    </div>
+    
+         <div class="mb-3">
+            <label for="update_photo" class="form-label"><i class="fas fa-camera"></i> Sube una foto de perfil</label>
+                <input type="file" id="update_photo" class="form-control" accept="image/*">
+                  </div>
+          <div class="text-center">
+                 <button type="button" class="btn btn-secondary prev-step">Anterior</button>
+                 <button type="submit" class="btn btn-success">Guardar cambios</button>
+          </div>
+        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    });
+</script>
+

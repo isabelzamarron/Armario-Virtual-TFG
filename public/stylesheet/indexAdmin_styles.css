@@ -1,0 +1,21 @@
+
+.admin-checkbox:checked { /* Marcador esAdmin*/
+    background-color: #9A8C98;  
+}
+/* Paginacion */
+.pagination { 
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination .page-item.active .page-link {/* Indicador de página activa*/
+    background-color: #22223B;
+    border-color: #22223B; 
+    color: white; 
+}
+
+.pagination .page-item .page-link { /* Indicador de página no activa*/
+    color: #22223B; 
+}
+
+

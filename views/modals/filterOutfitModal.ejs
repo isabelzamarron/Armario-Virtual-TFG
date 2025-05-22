@@ -1,0 +1,31 @@
+<!-- Modal de filtro outfit-->
+<div class="modal fade" id="filterModalOutfit" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="filterModalLabel">Filtrar Outfits</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="filterFormOutfits">
+                    <!-- Evento -->
+                    <div class="mb-3">
+                        <label class="form-label">Eventos</label>
+                        <div id="filterEventosOptions_outfit" class="d-flex flex-wrap"></div>
+                    </div>
+                    <!-- Estacion -->
+                    <div class="mb-3">
+                        <label class="form-label">Estación</label>
+                        <div id="filterEstacionOptions_outfit" class="d-flex flex-wrap"> </div>
+                    </div>
+                    <!-- Tag -->
+                    <div class="mb-3">
+                        <label class="form-label">Tags</label>
+                        <div id="filterTagsOptions_outfit" class="d-flex flex-wrap"> </div>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="applyFiltersOutfit" data-bs-dismiss="modal">Aplicar Filtros</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

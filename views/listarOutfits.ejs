@@ -1,0 +1,62 @@
+<!--pestañas-->
+      <ul class="nav nav-tabs mb-4" id="outfitTabs">
+        <li class="nav-item">
+          <a class="nav-link active" href="#" data-filter="todos">Todos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-filter="publicados">Publicados</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-filter="no-publicados">No publicados</a>
+        </li>
+      </ul>
+        
+    <div class="container mt-4">
+        <% if (outfits.length > 0) { %>
+            <div class="row" id="outfitGrid">
+                <% outfits.forEach(outfit => { %>
+                    <div class="col-md-4 outfit-item" data-publicado="<%= outfit.publico ? 'publicado' : 'no-publicado' %>">
+                        <div class="card mb-4 shadow-sm outfit-card" onclick="openOutfitModal('<%= outfit.id_outfit %>')">
+                            <img src="/outfits/photoOutfit/<%= outfit.id_outfit %>" class="bd-placeholder-img card-img-top outfit-img" alt="<%= outfit.nombre || 'Outfit sin nombre' %>">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= outfit.nombre || `Outfit #${outfit.id}` %></h5>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        <% } else { %>
+            <!-- Mensaje no hay outfits -->
+            <div class="no-outfits">No hay outfits disponibles.</div>
+        <% } %>
+    </div>
+
+   
+    <script>
+        document.querySelectorAll('#outfitTabs .nav-link').forEach(tab => {
+          tab.addEventListener('click', function (event) {
+            event.preventDefault();
+    
+            document.querySelectorAll('#outfitTabs .nav-link').forEach(link => link.classList.remove('active'));
+            this.classList.add('active');
+      
+            const filtro = this.getAttribute('data-filter');
+            const items = document.querySelectorAll('.outfit-item');
+      
+            items.forEach(item => {
+              const estado = item.getAttribute('data-publicado');
+      
+              if (filtro === 'todos') {
+                item.style.display = 'block';
+              } else if (filtro === 'publicados' && estado === 'publicado') {
+                item.style.display = 'block';
+              } else if (filtro === 'no-publicados' && estado === 'no-publicado') {
+                item.style.display = 'block';
+              } else {
+                item.style.display = 'none';
+              }
+            });
+          });
+        });
+      </script>
+      

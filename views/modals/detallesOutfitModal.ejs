@@ -1,0 +1,139 @@
+<!-- Modal Detalles de Outfit -->
+<div class="modal fade" id="outfitModal" tabindex="-1" aria-labelledby="outfitModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-white">
+              <!--Botones de opciones-->
+                <div class="dropdown me-auto">
+                    <button class="btn btn-link text-[#4A4E69] p-0" type="button" id="outfitMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-three-dots-vertical fs-5"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="outfitMenuButton">
+                        <li>
+                            <a class="dropdown-item" id="descargarOutfit" download href="#">
+                                <i class="bi bi-download me-2"></i> Descargar Imagen
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+                                <i class="bi bi-trash me-2"></i> Eliminar Outfit
+                            </a>
+                        </li>
+                    </ul>
+              </div>
+                <h5 class="modal-title" id="outfitModalLabel">Detalles del Outfit</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!--Imagen-->
+              <div class="row g-4">
+                <div class="col-md-5 position-relative" >
+                  <img id="modalImage" src="" class="img-fluid rounded image-border" alt="Imagen de prenda"
+                       style="max-width: 100%; height: 300px; object-fit: cover;">
+              </div>
+
+                    <div class="col-md-7">
+                        <div class="d-flex justify-content-end align-items-center mb-2">
+                          <div class="form-check form-switch">
+                              <input class="form-check-input" type="checkbox" id="switchPublicado" onchange="saveChanges('publico')">
+                              <label class="form-check-label ms-2 fw-bold text-success" for="switchPublicado" id="estadoPublicadoLabel"></label>
+                          </div>
+                      </div>
+                        <!-- NOMBRE  --> 
+                        <div id="nombreOutfitContainer" class="d-flex align-items-center">
+                            <h5 id="modalNombre" class="fw-bold text-primary mb-1 me-2">Nombre del Outfit</h5>
+                            <i class="bi bi-pencil-square text-secondary cursor-pointer" style="font-size: 1.2rem;" onclick="activarEdicionNombre()"></i>
+                        </div>
+                        
+                        <div id="nombreOutfitEditor" class="d-none mt-2">
+                            <input id="nombreOutfit"name="nombreOutfit" class="form-control fw-bold text-primary mb-2" value="">
+                            <button class="btn btn-primary" onclick="saveChanges('nombre')">Guardar</button>
+                            <button class="btn btn-secondary" onclick="cancelarEdicionNombre()">Cancelar</button>
+                            
+                        </div>
+                        
+                        <!-- ESTACIONES-->
+                        <div class="characteristic-row  d-flex flex-column">
+                        <p><strong>Estación:</strong> <span id="modalEstacionOutfit" class="text-muted"></span>
+                        <i class="bi bi-chevron-down text-secondary" onclick="mostrarParametros('estacion')"></i></p>
+                        <div id="editEstacionDiv" style="display: none;">
+                            <div class="d-flex flex-wrap" id="editarEstacionOpciones">
+                            </div>
+                            <input type="hidden" id="outfitEstacion" name="outfitEstacion">
+                            <button type="button" class="btn btn-primary mt-2" onclick="saveChanges('estacion')">Guardar Cambios</button>
+                        </div>
+                        </div>
+
+                        <!-- EVENTOS-->
+                        <div class="characteristic-row  d-flex flex-column">
+                        <p><strong>Eventos:</strong> <span id="modalEventos" class="text-muted"></span>
+                        <i class="bi bi-chevron-down text-secondary" onclick="mostrarParametros('eventos')"></i></p>
+                            <div id="editEventosDiv" style="display: none;">
+                                <div class="mb-3">
+                                    <div id="editarEventosOpciones" class="d-flex flex-wrap"></div>
+                                    <input type="hidden" id="outfitEventos" name="outfitEventos" required>
+                                </div>
+                                <button type="button" class="btn btn-primary" onclick="saveChanges('eventos')">Guardar Cambios</button>
+                            </div>
+                        </div>
+
+                        <!-- TAGS-->
+                        <div class="characteristic-row  d-flex flex-column">
+                        <p><strong>Tags:</strong> <span id="modalTags" class="text-muted"></span>
+                        <i class="bi bi-chevron-down text-secondary" onclick="mostrarParametros('tags')"></i></p>
+                            <div id="editTagsDiv" style="display: none;">
+                                <div class="mb-3">
+                                    <div id="editarTagsOpciones" class="d-flex flex-wrap"></div>
+                                    <input type="hidden" id="outfitTags" name="outfitTags" required>
+                                </div>
+                                <button type="button" class="btn btn-primary" onclick="saveChanges('tags')">Guardar Cambios</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+         </div>   
+        </div>  
+    </div>  
+</div>
+
+<!-- Modal Confirmación de Eliminación -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Estás segura de que quieres eliminar este outfit?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" onclick="confirmarEliminacion()">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+function activarEdicionNombre() {
+  const nombre = document.getElementById("modalNombre");
+  const input = document.getElementById("nombreOutfit");
+
+  input.value = nombre.textContent.trim();
+  document.getElementById("nombreOutfitContainer").classList.add("d-none");
+  document.getElementById("nombreOutfitEditor").classList.remove("d-none");
+}
+
+function cancelarEdicionNombre() {
+  document.getElementById("nombreOutfitContainer").classList.remove("d-none");
+  document.getElementById("nombreOutfitEditor").classList.add("d-none");
+}
+
+
+</script>
+<script src="/public/javascript/downloadPhoto.js"></script>
+<script src="/public/javascript/obtenerParametrosOutfit.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+

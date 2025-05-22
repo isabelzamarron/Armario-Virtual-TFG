@@ -1,0 +1,24 @@
+<!--Login container-->
+<div class="login-container">
+    <h2 class="text-center fs-3 fw-bold">Acceso</h2>
+    <br>
+    <form id="formLogin">
+        <div id="errorLogin"></div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">
+                <i class="fas fa-envelope"></i> Correo electrónico</label>
+            <input required type="email" id="email" class="form-control" placeholder="Correo electrónico">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">
+                <i class="fas fa-lock"></i> Contraseña</label>
+            <input required type="password" id="password" class="form-control" placeholder="Contraseña">
+        </div>
+        <button class="btn btn-ingreso" type="submit">Ingresar</button>
+
+        <p class="text-center mt-3">¿No tienes cuenta? 
+            <a href="#" data-bs-toggle="modal" data-bs-target="#registroModal">Regístrate</a>
+        </p>
+    </form>
+</div>

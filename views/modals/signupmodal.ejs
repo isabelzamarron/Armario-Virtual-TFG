@@ -1,0 +1,183 @@
+<!-- Modal de registro -->
+<div class="modal fade" id="registroModal" tabindex="-1"aria-labelledby="registroModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="registroModalLabel">Registro de Usuario</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+            <form id="form-signup" enctype="multipart/form-data" novalidate>
+                <!-- Mensaje de error -->
+                <div id="signup-error" class="alert alert-danger text-center" style="display: none;">
+                ❌ Ocurrió un error. Por favor, revisa los campos e inténtalo de nuevo.
+                </div>
+                <!-- paso 1 datos personales -->
+                <div class="step step-1">
+                    <p class="text-center text-muted">Introduce tus datos personales</p>
+                    <div class="row">
+                        <!-- nombre -->
+                        <div class="col-md-6 mb-3">
+                            <label for="input_name" class="form-label">
+                                <i class="fas fa-user"></i>Nombre</label>
+                            <input  type="text"
+                                id="input_name" class="form-control" placeholder="Nombre">
+                        </div>
+                        <!-- apellidos -->
+                        <div class="col-md-6 mb-3">
+                            <label for="input_surname" class="form-label">
+                                <i class="fas fa-user"></i> Apellidos</label>
+                            <input  type="text" id="input_surname" class="form-control" placeholder="Apellidos">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- nombre de usuario -->
+                        <div class="col-md-6 mb-3">
+                            <label for="input_username" class="form-label">
+                                <i class="fas fa-user"></i> Nombre de Usuario</label>
+                            <input  type="text" id="input_username" class="form-control" 
+                                   placeholder="@Nombre de usuario" value="@" 
+                                   oninput="if(!this.value.startsWith('@')) this.value = '@' + this.value;">
+                        </div>
+                        <!-- correo electrónico -->
+                        <div class="col-md-6 mb-3">
+                            <label for="input_email" class="form-label">
+                                <i class="fas fa-envelope"></i> Correo electrónico</label>
+                            <input  type="email" id="input_email" class="form-control" placeholder="usuario@mail.com">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- contraseña -->
+                        <div class="col-md-6 mb-3">
+                            <label for="input_password" class="form-label">
+                                <i class="fas fa-lock"></i> Contraseña</label>
+                            <input  type="password" id="input_password" class="form-control" placeholder="********">
+                        </div>
+                        <!-- contraseña 2 -->
+                        <div class="col-md-6 mb-3">
+                            <label for="input_password2" class="form-label">
+                                <i class="fas fa-lock"></i> Repetir contraseña</label>
+                            <input  type="password" id="input_password2" class="form-control" placeholder="********">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary next-step">Siguiente</button>
+                    </div>
+                </div>
+
+                <!-- paso 2 preferencias de estilo -->
+                <div class="step step-2 d-none">
+                    <p class="text-center text-muted">¿Cómo definirías tu estilo?</p>
+
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span> Formal
+                                <i class="fas fa-info-circle text-[#9A8C98] ms-1"
+                                    data-bs-toggle="tooltip"
+                                    title="Formal: Elegante y profesional."></i>
+                            </span>
+                            <span>Casual
+                                 <i class="fas fa-info-circle text-[#9A8C98] ms-1"
+                                    data-bs-toggle="tooltip"
+                                    title="Casual: Relajado y cómodo."></i>
+
+                            </span>
+                        </div>
+                        <input type="range" class="form-range mt-2" min="0" max="10" id="input_formalidad">
+                    </div>
+
+                    <div class="mb-4">
+                        <div
+                            class="d-flex justify-content-between align-items-center">
+                            <span>Minimalista
+                                <i  class="fas fa-info-circle text-[#9A8C98] ms-1"
+                                    data-bs-toggle="tooltip"
+                                    title="Minimalista: Simplicidad y pocos elementos."></i>
+                            </span>
+                            <span>Maximalista 
+                                <i  class="fas fa-info-circle text-[#9A8C98] ms-1"
+                                    data-bs-toggle="tooltip"
+                                    title="Maximalista: Exuberancia y detalles llamativos."></i>
+                            </span>
+                        </div>
+                        <input type="range" class="form-range mt-2" min="0" max="10" id="input_simplicidad">
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span> Clásico
+                                <i  class="fas fa-info-circle text-[#9A8C98] ms-1"
+                                    data-bs-toggle="tooltip"
+                                    title="Clásico: Atemporal y elegante."></i>
+                            </span>
+                            <span>Moderno 
+                                <i  class="fas fa-info-circle text-[#9A8C98] ms-1"
+                                    data-bs-toggle="tooltip"
+                                    title="Moderno: Actual y vanguardista."></i>
+                            </span>
+                        </div>
+                        <input type="range" class="form-range mt-2" min="0" max="10" id="input_estilo_temporal">
+                    </div>
+
+                    <div class="mb-4">
+                        <div
+                            class="d-flex justify-content-between align-items-center">
+                            <span>Bohemio
+                                <i  class="fas fa-info-circle text-[#9A8C98] ms-1"
+                                    data-bs-toggle="tooltip"
+                                    title="Bohemio: Relajado y artístico."></i>
+                            </span>
+                            <span>Elegante 
+                                <i  class="fas fa-info-circle text-[#9A8C98] ms-1"
+                                    data-bs-toggle="tooltip"
+                                    title="Elegante: Refinado y sofisticado."></i>
+
+                            </span>
+                        </div>
+                        <input type="range" class="form-range  mt-2" min="0" max="10" id="input_sofisticacion">
+                    </div>
+
+                    <div class="text-center">
+                        <button type="button"
+                            class="btn btn-secondary prev-step">Anterior</button>
+                        <button type="button"
+                            class="btn btn-primary next-step">Siguiente</button>
+                    </div>
+                </div>
+
+                <!-- paso 3 informacion extra -->
+                <div class="step step-3 d-none">
+                    <p class="text-center text-muted">Últimos
+                        detalles</p>
+                  
+                    <div class="mb-4">
+                        <label for="input_edad" class="form-label">
+                            <i class="fas fa-user"></i> ¿Cuál es tu rango de edad?
+                        </label>
+                        <select class="form-select" id="input_edad">
+                            <option value selected disabled>Selecciona tu rango de edad</option>
+                            <option value="18-24">18 - 24 años</option>
+                            <option value="25-34">25 - 34 años</option>
+                            <option value="35-44">35 - 44 años</option>
+                            <option value="45-54">45 - 54 años</option>
+                            <option value="55+">55 años o más</option>
+                            <option value="NS/NC">NS/NC</option>
+                        </select>
+                    </div>
+                    <!-- foto -->
+                    <div class="mb-3">
+                        <label for="input_photo"
+                            class="form-label"><i class="fas fa-camera"></i> Sube una foto de perfil</label>
+                        <input required type="file" id="input_photo" class="form-control" accept="image/*">
+                    </div>
+                    <div class="text-center">
+                        <button type="button"
+                            class="btn btn-secondary prev-step">Anterior</button>
+                        <button type="submit" class="btn btn-success">Finalizar Registro</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,267 @@
+main {
+    flex-grow: 1;
+}
+#main-content {
+    transition: margin-left 0.3s ease-in-out;
+}
+   #main-content-armario {
+    background-color: #EEDEDF ;
+  transition: margin-left 0.3s ease-in-out;
+}
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #EEDEDF;
+}
+html, body {
+    
+    overflow-x: hidden;
+  }
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    background-color: #EEDEDF;
+  }
+  
+  main {
+    flex: 1 0 auto; 
+  }
+  
+  footer {
+    flex-shrink: 0;
+  }
+  
+/* Estilos modal */
+.modal-content {
+    background-color:white;
+    border-radius: 10px;
+    color: #22223B; 
+}
+.modal-header {
+    background-color: #9A8C98; 
+    color:  #Fff;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+/* Inputs más estilizados */
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #9A8C98;
+    background-color: #FAF4F4;
+    color: #22223B;
+}
+.form-control:focus {
+    border-color: #C9ADA7;
+}
+h1 {
+    font-size: 1.8rem;
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+}
+/* Estilo botones */
+.btn-primary {
+    background-color: #9A8C98; 
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #C9ADA7;
+}
+
+.btn-secondary {
+    background-color: #D8C3A5; 
+    border: none;
+    color: #22223B;
+}
+.btn-secondary:hover {
+    background-color: #EAE0D5;
+}
+ /* Modal detalles */
+ .characteristic-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.characteristic-row:last-child {
+    border-bottom: none;
+}
+.card-img-top {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;  
+}
+    
+#modalImage {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain; /*probar*/
+}
+/* Estilo para las opciones */
+.option {
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    margin: 5px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    }
+
+    .option.selected {
+    background-color: #9A8C98;
+    color: white; 
+    }
+    
+    #sidebar ul li:first-child {
+        margin-top: 20px; 
+     }
+     /*Add prenda*/
+     #spinner {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 2000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+    
+      /* Estilos personalizados para los botones activos */
+      #categoriaOpciones button.active,
+      #tipoOpciones button.active,
+      #estacionOpciones button.active {
+        background-color: #9A8C98;
+        color: white;
+      }
+    
+      #modalExito .modal-content {
+       border-radius: 1rem;
+        animation: fadeInUp 0.5s ease-out;
+      }
+      #modalExitoOutfit .icono {
+        font-size: 3rem;
+      }
+      @keyframes fadeInUp {
+        from {
+          transform: translateY(30px);
+          opacity: 0;
+        } to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+         input[type="range"]::-webkit-slider-thumb {
+    background-color: #9A8C98; 
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.image-upload-container {
+    text-align: center;
+ }
+       /* Añadir prenda */
+.color-option {
+border: 1px solid #ccc;
+padding: 5px;
+margin: 5px;
+border-radius: 4px;
+display: inline-flex;
+align-items: center;
+}
+
+.color-square {
+width: 20px;
+height: 20px;
+border-radius: 4px;
+border: 1px solid #999;
+}
+
+  
+ /* Estilo de selección */
+    .color-option.selected {
+        background-color: #9A8C98; 
+    color: white; 
+ 
+    }  
+
+
+/*index*/
+.outfits-container-amigos {
+    max-height: 300px;        
+    overflow-y: auto;          
+    padding-right: 8px;
+    padding-left: 4px;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 180px; 
+  object-fit: contain;
+  background-color: #ffffff; 
+}
+    /*listar outfits*/
+        .outfit-card {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: fit-content; 
+    height: auto;        
+}
+        .outfit-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .outfit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+        .outfit-img {
+    height: 370px;      
+    width: auto;     
+    object-fit: contain;
+    border-radius: 8px;
+    display: block;
+}
+        .no-outfits {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            color: #6c757d;
+        }
+ .nav-tabs .nav-link {
+    color: #22223B !important; 
+}
+
+.nav-tabs .nav-link.active {
+    color: #000 !important; 
+    font-weight: bold; 
+}
+.card-title {
+    font-size: 1.10rem;
+    font-weight: 600;   
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+    text-align: center; 
+  
+}

@@ -1,0 +1,114 @@
+ <!--Modal detalles de prenda -->
+<div class="modal fade" id="prendaModal" tabindex="-1" aria-labelledby="prendaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-white">
+                <div class="me-auto">
+                    <button class="btn btn-link text-[#4A4E69] p-0" type="button" data-bs-toggle="modal" data-bs-target="#confirmDeletePrendaModal">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+                
+                <h5 class="modal-title" id="prendaModalLabel">Detalles de Prenda</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-5">
+                <!-- IMAGEN-->
+                <img id="modalImage" src="" alt="Imagen de prenda" style="max-width: 100%; max-height: 300px; object-fit: contain;">
+                    </div>
+
+                <div class="col-md-7">
+                <!-- CATEGORIA-->
+                <div class="characteristic-row  d-flex flex-column">
+                <p><strong>Categoría:</strong> <span id="modalCategoria" class="text-muted"></span> 
+                      <i class="bi bi-chevron-down text-secondary" onclick="mostrarParametros('categoria')"></i></p>
+                <div id="editCategoriaDiv" style="display: none;">
+                    <div class="mb-3">
+                        <div id="categoriaOpcionesDetalles" class="d-flex flex-wrap"></div>
+                        <input type="hidden" id="prendaCategoria" name="prendaCategoria" required>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="saveChanges('categoria')">Guardar Cambios</button>
+                </div>
+                </div>
+
+                 <!-- TIPO-->
+                 <div class="characteristic-row d-flex flex-column">
+                <p><strong>Tipo:</strong> <span id="modalTipo" class="text-muted"></span>
+                    <i class="bi bi-chevron-down text-secondary" onclick="mostrarParametros('tipo')"></i></p></p>
+                <div id="editTipoDiv" style="display: none;">
+                    <div class="mb-3">
+                        
+                        <div id="tipoOpcionesDetalles" class="d-flex flex-wrap"></div>
+                        <input type="hidden" id="prendaTipo" name="prendaTipo" required>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="saveChanges('tipo')">Guardar Cambios</button>
+               </div>
+                 </div>
+
+                <!-- COLORES-->
+                <div class="characteristic-row d-flex flex-column">
+                <p><strong>Colores:</strong> <span id="modalColores" class="text-muted"></span>
+                    <i class="bi bi-chevron-down text-secondary" onclick="mostrarParametros('colores')"></i></p></p>
+                <div id="editColoresDiv" style="display: none;">
+                    <div class="mb-3">
+                        <div id="colorOpcionesDetalles" class="d-flex flex-wrap"></div>
+                        <input type="hidden" id="prendaColores" name="prendaColores" required>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="saveChanges('colores')">Guardar Cambios</button>
+               </div>
+                </div>
+                <!-- ESTACIONES-->
+                <div class="characteristic-row d-flex flex-column">
+                <p><strong>Estación:</strong> <span id="modalEstacion" class="text-muted"></span>
+                    <i class="bi bi-chevron-down text-secondary" onclick="mostrarParametros('estacion')"></i></p></p>
+                <div id="editEstacionDiv" style="display: none;">
+                    <div class="mb-3">
+                        <div id="estacionOpcionesDetalles" class="d-flex flex-wrap"></div>
+                        <input type="hidden" id="prendaEstacion" name="prendaEstacion" required>
+                    </div>
+                    <button type="button" class="btn btn-primary mt-2" onclick="saveChanges('estacion')">Guardar Cambios</button>
+                </div>
+                </div>
+                <!-- ESTILOS-->
+                <div class="characteristic-row d-flex flex-column">
+                <p><strong>Estilos:</strong> <span id="modalEstilos" class="text-muted"></span>
+                    <i class="bi bi-chevron-down text-secondary" onclick="mostrarParametros('estilos')"></i></p>
+                </p>
+                <div id="editEstilosDiv" style="display: none;">
+                    <div class="mb-3">
+                        <div id="estiloOpcionesDetalles" class="d-flex flex-wrap"></div>
+                        <input type="hidden" id="prendaEstilos" name="prendaEstilos" required>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="saveChanges('estilos')">Guardar Cambios</button>
+               </div>
+            </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal confirmar elimnar -->
+<div class="modal fade" id="confirmDeletePrendaModal" tabindex="-1" aria-labelledby="confirmDeletePrendaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeletePrendaModalLabel">Confirmar Eliminación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que quieres eliminar esta prenda?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" onclick="confirmarEliminacion()">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/public/javascript/obtenerParametrosPrenda.js"></script>
+<script src="/public/javascript/armarioPrendas.js"></script>

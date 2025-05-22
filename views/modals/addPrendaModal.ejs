@@ -1,0 +1,81 @@
+<!-- Modal añadir prenda-->
+
+  <div class="modal fade" id="addPrendaModal" tabindex="-1" aria-labelledby="addPrendaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addPrendaModalLabel">Añadir Prenda</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">  
+          <form id="addPrendaForm" enctype="multipart/form-data">
+            <!-- Foto -->
+            <div class="mb-3">
+              <label for="prendaFoto" class="form-label">Foto</label>
+              <input type="file" class="form-control" id="prendaFoto" name="prendaFoto" required>
+            </div>
+            <!-- Categoria -->
+            <div class="mb-3">
+              <label class="form-label">Categoría</label>
+              <div id="categoriaOpciones" class="d-flex flex-wrap"></div>
+              <div id="errorCategoria" class="text-danger d-none">Por favor, selecciona una categoria.</div>
+              <input type="hidden" id="prendaCategoria" name="prendaCategoria" required>
+            </div>
+            <!-- Tipo -->
+            <div class="mb-3">
+              <label class="form-label">Tipo</label>
+              <p>Pulse categoría para mostrar</p>
+              <div id="tipoOpciones" class="d-flex flex-wrap"></div>
+              <div id="errorTipo" class="text-danger d-none">Por favor, selecciona un tipo.</div>
+              <input type="hidden" id="prendaTipo" name="prendaTipo" required>
+            </div>
+            <!-- Colores -->
+            <div class="mb-3">
+                <label class="form-label">Selecciona los colores</label>
+                <div id="colorOpciones" class="d-flex flex-wrap"></div>
+                <div id="errorColores" class="text-danger d-none">Por favor, selecciona al menos un color.</div> 
+                <input type="hidden" id="prendaColores" name="prendaColores">
+            </div>
+            <!-- Estacion -->
+            <div class="mb-3">
+              <label class="form-label">Estación</label>
+              <div id="estacionOpciones" class="d-flex flex-wrap"></div>
+              <div id="errorEstaciones" class="text-danger d-none">Por favor, selecciona al menos una estación.</div> 
+              <input type="hidden" id="prendaEstacion" name="prendaEstacion">
+            </div>
+               <!-- Estilos -->
+            <div class="mb-3">
+                <label class="form-label">Selecciona los estilos</label>
+                <div id="estiloOpciones" class="d-flex flex-wrap"> </div>
+                <div id="errorEstilos" class="text-danger d-none">Por favor, selecciona al menos un estilo.</div> 
+                <input type="hidden" id="prendaEstilos" name="prendaEstilos">
+            </div>
+  
+            <button type="submit" class="btn btn-primary">Añadir</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Modal de mensaje de exito-->
+  <div class="modal fade" id="modalExito" tabindex="-1" aria-labelledby="modalExitoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-center p-4">
+        <div class="mx-auto mb-3"style="font-size: 3rem;"> ✅ </div>
+        <h5 class="modal-title mb-2" id="modalExitoLabel">¡Prenda añadida!</h5>
+        <p>La prenda se ha guardado correctamente.</p>
+      </div>
+    </div>
+  </div> 
+
+  <!--Mensaje cargando-->
+  <div id="spinner" style="display: none;">
+    <div class="spinner-border text-light" role="status"></div>
+    <p class="text-white mt-3">Eliminando fondo de imagen...</p>
+  </div>
+  
+   
+<script src="../public/javascript/obtenerParametrosPrenda.js"></script>
+<script src="../public/javascript/addPrenda.js"></script>
+  

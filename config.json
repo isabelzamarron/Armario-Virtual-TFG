@@ -1,0 +1,7 @@
+{
+    "host": "localhost",
+    "user": "root",
+    "password": "",
+    "database": "sistema_inteligente",
+    "port": 3306
+  }
